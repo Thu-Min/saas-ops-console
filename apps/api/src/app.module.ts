@@ -6,6 +6,7 @@ import { ContextModule } from './context/tenant-context.module';
 import { DebugModule } from './debug/debug.module';
 import { AuthModule } from './auth/auth.module';
 import { DbModule } from './db/db.module';
+import { AuthzModule } from './authz/authz.module';
 
 @Module({
   imports: [
@@ -17,6 +18,7 @@ import { DbModule } from './db/db.module';
     ContextModule,
     DebugModule,
     AuthModule,
+    AuthzModule,
   ],
   controllers: [AppController],
   providers: [AppService],

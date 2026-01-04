@@ -44,3 +44,9 @@ policy-based authorization, tenant isolation, and backend-driven UI contracts.
 - Authenticated users must be active members of the tenant organization.
 - Membership is valided against the database on every protected request.
 - Roles are derived from membership, not trusted from JWT claims.
+
+## Authorization Design
+
+- Access control is enforced via centralized, policy-based guards.
+- Policies evaluate request context and resource ownership without relying on route-level role checks.
+- Authorization logic is isolated, extensible, and testable.
