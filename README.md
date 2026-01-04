@@ -29,3 +29,18 @@ policy-based authorization, tenant isolation, and backend-driven UI contracts.
 - JWT authentication enriches a request-scoped context that already enforces tenant identification.
 - Business logic consumes a unified context and never parses tokens directly.
 - This ensures strict separation of authentication, authorization, and domain logic.
+
+### Request
+
+- Tenant header validated
+- JWT validated
+- Membership validated (DB)
+- RequestContext populated
+- Authorization
+- Business logic
+
+### Membership Enforcement
+
+- Authenticated users must be active members of the tenant organization.
+- Membership is valided against the database on every protected request.
+- Roles are derived from membership, not trusted from JWT claims.

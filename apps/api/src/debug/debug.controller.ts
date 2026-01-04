@@ -1,6 +1,6 @@
 import { Controller, Get, UseGuards } from '@nestjs/common';
-import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
-import { RequestContextService } from 'src/context/request-context.service';
+import { JwtAuthGuard } from '../auth/jwt-auth.guard';
+import { RequestContextService } from '../context/request-context.service';
 
 @Controller('debug')
 export class DebugController {

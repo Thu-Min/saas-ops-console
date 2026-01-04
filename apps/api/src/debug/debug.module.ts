@@ -1,10 +1,11 @@
 import { Module } from '@nestjs/common';
 import { DebugService } from './debug.service';
 import { DebugController } from './debug.controller';
-import { ContextModule } from 'src/context/tenant-context.module';
+import { ContextModule } from '../context/tenant-context.module';
+import { AuthModule } from '../auth/auth.module';
 
 @Module({
-  imports: [ContextModule],
+  imports: [AuthModule, ContextModule],
   providers: [DebugService],
   controllers: [DebugController],
 })
