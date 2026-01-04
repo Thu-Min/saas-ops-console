@@ -17,3 +17,9 @@ policy-based authorization, tenant isolation, and backend-driven UI contracts.
 - Authorization policies
 - Auditability
 - Operational correctness
+
+## Tenant Isolation Guarantee
+
+Every request initializes a tenant context before any business logic executes.
+All data access and authorization decisions are scoped to this context.
+Requests without tenant identification are rejected early.
