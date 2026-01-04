@@ -20,6 +20,12 @@ policy-based authorization, tenant isolation, and backend-driven UI contracts.
 
 ## Tenant Isolation Guarantee
 
-Every request initializes a tenant context before any business logic executes.
-All data access and authorization decisions are scoped to this context.
-Requests without tenant identification are rejected early.
+- Every request initializes a tenant context before any business logic executes.
+- All data access and authorization decisions are scoped to this context.
+- Requests without tenant identification are rejected early.
+
+## Authentication Design
+
+- JWT authentication enriches a request-scoped context that already enforces tenant identification.
+- Business logic consumes a unified context and never parses tokens directly.
+- This ensures strict separation of authentication, authorization, and domain logic.

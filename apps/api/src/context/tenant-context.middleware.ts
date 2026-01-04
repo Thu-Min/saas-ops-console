@@ -1,10 +1,10 @@
 import { Injectable, NestMiddleware } from '@nestjs/common';
-import { TenantContextService } from './tenant-context.service';
+import { RequestContextService } from './request-context.service';
 import { NextFunction, Request, Response } from 'express';
 
 @Injectable()
 export class TenantContextMiddleware implements NestMiddleware {
-  constructor(private readonly tenantContext: TenantContextService) {}
+  constructor(private readonly tenantContext: RequestContextService) {}
 
   use(req: Request, res: Response, next: NextFunction) {
     const organizationId = req.header('x-organization-id');
