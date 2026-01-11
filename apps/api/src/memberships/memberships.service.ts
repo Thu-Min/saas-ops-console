@@ -1,12 +1,14 @@
 import { Inject, Injectable } from '@nestjs/common';
-import { db } from '../db';
+import type { DbClient } from '../db';
 import { memberships } from '../db/schema';
 import { and, eq } from 'drizzle-orm';
 
 @Injectable()
 export class MembershipsService {
+  constructor(@Inject('DB') private readonly db: DbClient) {}
+
   async validateMembership(userId: string, organizationId: string) {
-    const result = await db
+    const result = await this.db
       .select()
       .from(memberships)
       .where(

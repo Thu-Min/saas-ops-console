@@ -1,12 +1,14 @@
-import { Injectable } from '@nestjs/common';
+import { Inject, Injectable } from '@nestjs/common';
 import { eq } from 'drizzle-orm';
-import { db } from 'src/db';
+import type { DbClient } from 'src/db';
 import { projects } from 'src/db/schema/projects.schema';
 
 @Injectable()
 export class ProjectsService {
+  constructor(@Inject('DB') private readonly db: DbClient) {}
+
   async findById(id: string) {
-    const result = await db
+    const result = await this.db
       .select()
       .from(projects)
       .where(eq(projects.id, id))
