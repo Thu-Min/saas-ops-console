@@ -7,6 +7,8 @@ import { DebugModule } from './debug/debug.module';
 import { AuthModule } from './auth/auth.module';
 import { DbModule } from './db/db.module';
 import { AuthzModule } from './authz/authz.module';
+import { CapabilityModule } from './capabilities/capability.module';
+import { ProjectsModule } from './projects/projects.module';
 
 @Module({
   imports: [
@@ -19,6 +21,8 @@ import { AuthzModule } from './authz/authz.module';
     DebugModule,
     AuthModule,
     AuthzModule,
+    CapabilityModule,
+    ProjectsModule,
   ],
   controllers: [AppController],
   providers: [AppService],

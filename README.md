@@ -24,6 +24,15 @@ policy-based authorization, tenant isolation, and backend-driven UI contracts.
 - All data access and authorization decisions are scoped to this context.
 - Requests without tenant identification are rejected early.
 
+## Features
+
+- Deterministic database schema + migrations (Drizzle)
+- Clean request context (tenant + user + role)
+- JWT authentication
+- Membership enforcement (DB-backed)
+- Policy-based authorization (resource + action)
+- Guard-driven enforcement (no inline role checks)
+
 ## Authentication Design
 
 - JWT authentication enriches a request-scoped context that already enforces tenant identification.
@@ -50,3 +59,9 @@ policy-based authorization, tenant isolation, and backend-driven UI contracts.
 - Access control is enforced via centralized, policy-based guards.
 - Policies evaluate request context and resource ownership without relying on route-level role checks.
 - Authorization logic is isolated, extensible, and testable.
+
+## Capability-Driven API Design
+
+- API responses include explicit capability flags derived from authorization policies.
+- The frontend renders actions based on these capabilities rather than duplicating permission logic.
+- This ensure consistent authorization enforcement across backend and UI.

@@ -1,0 +1,1 @@
+CREATE INDEX "projects_org_idx" ON "projects" USING btree ("organization_id");
