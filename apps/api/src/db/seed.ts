@@ -15,35 +15,54 @@ async function seed() {
     database: process.env.DB_NAME ?? 'postgres',
   });
 
-  const [org] = await db
+  // Org A
+  const [orgA] = await db
     .insert(organizations)
-    .values({
-      name: 'Acme Corp',
-    })
+    .values({ name: 'Acme Corp' })
     .returning();
 
-  const [user] = await db
+  // Org B
+  const [orgB] = await db
+    .insert(organizations)
+    .values({ name: 'Beta Inc' })
+    .returning();
+
+  // Users
+  const [owner] = await db
     .insert(users)
-    .values({
-      email: 'admin@acme.com',
-    })
+    .values({ email: 'owner@acme.com' })
     .returning();
 
-  await db.insert(memberships).values({
-    userId: user.id,
-    organizationId: org.id,
-    role: 'OWNER',
-    isActive: true,
-  });
+  const [member] = await db
+    .insert(users)
+    .values({ email: 'member@acme.com' })
+    .returning();
 
+  // Memberships
+  await db.insert(memberships).values([
+    {
+      userId: owner.id,
+      organizationId: orgA.id,
+      role: 'OWNER',
+      isActive: true,
+    },
+    {
+      userId: member.id,
+      organizationId: orgA.id,
+      role: 'MEMBER',
+      isActive: true,
+    },
+  ]);
+
+  // Projects
   await db.insert(projects).values([
     {
       name: 'Inventory System',
-      organizationId: org.id,
+      organizationId: orgA.id,
     },
     {
       name: 'Booking Platform',
-      organizationId: org.id,
+      organizationId: orgA.id,
     },
   ]);
 

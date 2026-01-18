@@ -16,4 +16,23 @@ export class ProjectsService {
 
     return result[0] ?? null;
   }
+
+  async findAllByOrganization(organizationId: string) {
+    return this.db
+      .select()
+      .from(projects)
+      .where(eq(projects.organizationId, organizationId));
+  }
+
+  async create(name: string, organizationId: string) {
+    const [project] = await this.db
+      .insert(projects)
+      .values({
+        name,
+        organizationId,
+      })
+      .returning();
+
+    return project;
+  }
 }

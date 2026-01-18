@@ -3,10 +3,12 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { apiFetch } from "@/lib/api";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 export default function LoginPage() {
   const [email, setEmail] = useState("");
+  const router = useRouter();
 
   async function login() {
     const res = await apiFetch("auth/login", {
@@ -15,7 +17,7 @@ export default function LoginPage() {
     });
 
     localStorage.setItem("token", res.token);
-    // window.location.href = "/projects";
+    router.push("/projects");
   }
 
   return (

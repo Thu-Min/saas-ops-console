@@ -1,11 +1,11 @@
 import { Module } from '@nestjs/common';
 import { CapabilityService } from './capability.service';
-import { PolicyRegistry } from 'src/authz/policy.registry';
-import { RequestContextService } from 'src/context/request-context.service';
+import { AuthzModule } from 'src/authz/authz.module';
+import { ContextModule } from 'src/context/tenant-context.module';
 
 @Module({
-  imports: [],
-  providers: [CapabilityService, PolicyRegistry, RequestContextService],
+  imports: [AuthzModule, ContextModule],
+  providers: [CapabilityService],
   exports: [CapabilityService],
 })
 export class CapabilityModule {}
