@@ -22,6 +22,13 @@
       "when": 1768105085297,
       "tag": "0002_index_in_project_table",
       "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "7",
+      "when": 1768789265095,
+      "tag": "0003_audit_log_table",
+      "breakpoints": true
     }
   ]
 }

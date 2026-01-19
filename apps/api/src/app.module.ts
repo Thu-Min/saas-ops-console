@@ -9,6 +9,7 @@ import { DbModule } from './db/db.module';
 import { AuthzModule } from './authz/authz.module';
 import { CapabilityModule } from './capabilities/capability.module';
 import { ProjectsModule } from './projects/projects.module';
+import { AuditModule } from './audit/audit.module';
 
 @Module({
   imports: [
@@ -23,6 +24,7 @@ import { ProjectsModule } from './projects/projects.module';
     AuthzModule,
     CapabilityModule,
     ProjectsModule,
+    AuditModule,
   ],
   controllers: [AppController],
   providers: [AppService],

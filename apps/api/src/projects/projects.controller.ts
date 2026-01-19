@@ -16,6 +16,7 @@ import { Authorize } from 'src/authz/authorize.decorator';
 import { Resource } from 'src/authz/resources';
 import { Action } from 'src/authz/actions';
 import { RequestContextService } from 'src/context/request-context.service';
+import { AuditService } from 'src/audit/audit.service';
 
 @Controller('projects')
 @UseGuards(JwtAuthGuard, PolicyGuard)
@@ -24,6 +25,7 @@ export class ProjectsController {
     private readonly projectsService: ProjectsService,
     private readonly capabilityService: CapabilityService,
     private readonly ctx: RequestContextService,
+    private readonly auditService: AuditService,
   ) {}
 
   @Get(':id')
@@ -76,6 +78,15 @@ export class ProjectsController {
   async createProject(@Body('name') name: string) {
     const { organizationId } = this.ctx.get();
 
-    return this.projectsService.create(name, organizationId);
+    const project = this.projectsService.create(name, organizationId);
+
+    await this.auditService.log({
+      resource: Resource.PROJECT,
+      action: 'create',
+      resourceId: (await project).id,
+      metadata: { name: (await project).name },
+    });
+
+    return project;
   }
 }

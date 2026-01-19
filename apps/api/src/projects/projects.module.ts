@@ -7,9 +7,17 @@ import { AuthModule } from '../auth/auth.module';
 import { AuthzModule } from '../authz/authz.module';
 import { CapabilityModule } from 'src/capabilities/capability.module';
 import { PolicyRegistry } from 'src/authz/policy.registry';
+import { AuditModule } from 'src/audit/audit.module';
 
 @Module({
-  imports: [DbModule, ContextModule, AuthModule, AuthzModule, CapabilityModule],
+  imports: [
+    DbModule,
+    ContextModule,
+    AuthModule,
+    AuthzModule,
+    CapabilityModule,
+    AuditModule,
+  ],
   providers: [ProjectsService],
   exports: [ProjectsService],
   controllers: [ProjectsController],
