@@ -65,3 +65,8 @@ policy-based authorization, tenant isolation, and backend-driven UI contracts.
 - API responses include explicit capability flags derived from authorization policies.
 - The frontend renders actions based on these capabilities rather than duplicating permission logic.
 - This ensure consistent authorization enforcement across backend and UI.
+
+## Audit Logging
+
+- Sensitive actions are recorded in an append-only audit log capturing actor, tenant, resource, and action.
+- Logging is centralized and decoupled from business logic, ensuring operational traceability without impacting core flows.
