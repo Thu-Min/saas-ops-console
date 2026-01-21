@@ -10,6 +10,7 @@ import { AuthzModule } from './authz/authz.module';
 import { CapabilityModule } from './capabilities/capability.module';
 import { ProjectsModule } from './projects/projects.module';
 import { AuditModule } from './audit/audit.module';
+import { MeModule } from './me/me.module';
 
 @Module({
   imports: [
@@ -25,6 +26,7 @@ import { AuditModule } from './audit/audit.module';
     CapabilityModule,
     ProjectsModule,
     AuditModule,
+    MeModule,
   ],
   controllers: [AppController],
   providers: [AppService],

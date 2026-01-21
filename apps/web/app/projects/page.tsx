@@ -3,6 +3,7 @@
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { apiFetch } from "@/lib/api";
+import { requireOrg } from "@/lib/require-org";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
@@ -16,6 +17,9 @@ export default function ProjectsPage() {
   const [canCreate, setCanCreate] = useState(false);
 
   useEffect(() => {
+    const org = requireOrg();
+    if (!org) return;
+
     apiFetch("projects").then((res) => {
       setProjects(res.data);
       setCanCreate(res.capabilities.canCreate);

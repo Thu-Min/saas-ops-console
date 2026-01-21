@@ -17,7 +17,7 @@ export default function LoginPage() {
     });
 
     localStorage.setItem("token", res.token);
-    router.push("/projects");
+    router.push("/select-org");
   }
 
   return (

@@ -20,4 +20,15 @@ export class RequestContextService {
 
     return this.context as RequestContext;
   }
+
+  getUser(): Pick<RequestContext, 'userId' | 'role'> {
+    if (!this.context?.userId || !this.context?.role) {
+      throw new Error('Request context not initialized');
+    }
+
+    return {
+      userId: this.context.userId,
+      role: this.context.role,
+    };
+  }
 }
